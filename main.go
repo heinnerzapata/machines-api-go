@@ -37,6 +37,7 @@ func serveApplication() {
 
 	envPort := fmt.Sprintf(":%v", os.Getenv("PORT"))
 
+	// Auth paths
 	publicRoutes := router.Group("/auth")
 	publicRoutes.POST("/register", controller.Register)
 	publicRoutes.POST("/login", controller.Login)
