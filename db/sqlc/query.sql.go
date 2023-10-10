@@ -7,7 +7,6 @@ package db
 
 import (
 	"context"
-	"database/sql"
 )
 
 const createUser = `-- name: CreateUser :one
@@ -20,10 +19,10 @@ RETURNING id, first_name, last_name, password, email, created_at
 `
 
 type CreateUserParams struct {
-	FirstName sql.NullString
-	LastName  sql.NullString
-	Password  sql.NullString
-	Email     sql.NullString
+	FirstName string
+	LastName  string
+	Password  string
+	Email     string
 }
 
 func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, error) {
@@ -113,18 +112,16 @@ const updateUser = `-- name: UpdateUser :one
 UPDATE users
   set first_name = $2,
   last_name = $3,
-  password = $4,
-  email = $5
+  email = $4
 WHERE id = $1
 RETURNING id, first_name, last_name, password, email, created_at
 `
 
 type UpdateUserParams struct {
 	ID        int32
-	FirstName sql.NullString
-	LastName  sql.NullString
-	Password  sql.NullString
-	Email     sql.NullString
+	FirstName string
+	LastName  string
+	Email     string
 }
 
 func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) (User, error) {
@@ -132,7 +129,6 @@ func (q *Queries) UpdateUser(ctx context.Context, arg UpdateUserParams) (User, e
 		arg.ID,
 		arg.FirstName,
 		arg.LastName,
-		arg.Password,
 		arg.Email,
 	)
 	var i User

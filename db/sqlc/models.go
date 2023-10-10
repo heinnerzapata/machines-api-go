@@ -10,17 +10,17 @@ import (
 
 type Machine struct {
 	ID          int32
-	Name        sql.NullString
-	UserOwner   sql.NullInt32
-	Description sql.NullString
+	Name        string
+	UserOwner   int32
+	Description string
 	CreatedAt   sql.NullTime
 }
 
 type User struct {
 	ID        int32
-	FirstName sql.NullString
-	LastName  sql.NullString
-	Password  sql.NullString
-	Email     sql.NullString
+	FirstName string
+	LastName  string
+	Password  string
+	Email     string
 	CreatedAt sql.NullTime
 }
