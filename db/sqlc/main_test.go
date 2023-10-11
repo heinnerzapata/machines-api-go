@@ -9,10 +9,9 @@ import (
 	_ "github.com/lib/pq"
 )
 
-const (
-	dbDriver = "postgres"
-	dbSource = "postgres://amxolmvh:Ifc6YHUH5PdD1fTrVb0046CpbpuAAJXz@trumpet.db.elephantsql.com/amxolmvh"
-)
+const dbDriver = "postgres"
+
+var dbSource string = os.Getenv("PORT")
 
 var testQueries *Queries
 var testDb *sql.DB

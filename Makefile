@@ -1,8 +1,10 @@
+include local.env
+
 migrateup:
-	migrate -path db/migration/ -database "postgres://amxolmvh:Ifc6YHUH5PdD1fTrVb0046CpbpuAAJXz@trumpet.db.elephantsql.com/amxolmvh" -verbose up
+	migrate -path db/migration/ -database "$(DB_STRING_CONN)" -verbose up
 
 migratedown:
-	migrate -path db/migration/ -database "postgres://amxolmvh:Ifc6YHUH5PdD1fTrVb0046CpbpuAAJXz@trumpet.db.elephantsql.com/amxolmvh" -verbose down
+	migrate -path db/migration/ -database "$(DB_STRING_CONN)" -verbose down
 
 sqlc:
 	sqlc generate

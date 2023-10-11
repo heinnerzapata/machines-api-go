@@ -60,3 +60,29 @@ func TestUpdateUser(t *testing.T) {
 	require.Equal(t, user2.FirstName, user3.FirstName)
 
 }
+
+func TestListUsers(t *testing.T) {
+	user1 := createRandomUser(t)
+	require.NotEmpty(t, user1)
+
+	user2 := createRandomUser(t)
+	require.NotEmpty(t, user2)
+
+	users, err := testQueries.ListUsers(context.Background())
+
+	require.NoError(t, err)
+	require.True(t, len(users) > 0)
+}
+
+func TestDeleteUser(t *testing.T) {
+	user1 := createRandomUser(t)
+	require.NotEmpty(t, user1)
+
+	err := testQueries.DeleteUser(context.Background(), user1.ID)
+	require.NoError(t, err)
+
+	user2, err := testQueries.GetUser(context.Background(), user1.ID)
+
+	require.Error(t, err)
+	require.Empty(t, user2)
+}
