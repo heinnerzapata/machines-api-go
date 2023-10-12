@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	"machines-api-go/connect"
 	"machines-api-go/controller"
 
 	"github.com/gin-gonic/gin"
@@ -29,7 +30,7 @@ func loadEnv() {
 }
 
 func loadDatabase() {
-	fmt.Println("Loading Database...")
+	connect.Connect()
 }
 
 func serveApplication() {

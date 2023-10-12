@@ -4,7 +4,7 @@ CREATE TABLE "users" (
   "last_name" varchar(15) NOT NULL,
   "password" varchar(8) NOT NULL,
   "email" varchar(30) NOT NULL,
-  "created_at" timestamp DEFAULT (now())
+  "created_at" timestamp DEFAULT (now()) NOT NULL
 );
 
 CREATE TABLE "machines" (
@@ -12,7 +12,7 @@ CREATE TABLE "machines" (
   "name" varchar(15) NOT NULL,
   "user_owner" integer NOT NULL,
   "description" varchar NOT NULL,
-  "created_at" timestamp DEFAULT (now())
+  "created_at" timestamp DEFAULT (now()) NOT NULL
 );
 
 ALTER TABLE "machines" ADD FOREIGN KEY ("user_owner") REFERENCES "users" ("id");
